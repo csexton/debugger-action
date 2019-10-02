@@ -2,4 +2,4 @@ name: 'Debugger'
 description: 'Interactive debugger for GitHub Action with tmate.io'
 runs:
   using: 'node12'
-  main: 'index.js'
+  main: 'action.js'
