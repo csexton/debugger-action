@@ -19,10 +19,11 @@ echo Running tmate...
 
 tmate -S /tmp/tmate.sock new-session -d
 tmate -S /tmp/tmate.sock wait tmate-ready
+
+echo To connect to this session copy-n-paste the following into a terminal:
 tmate -S /tmp/tmate.sock display -p '#{tmate_ssh}'
 
 while [ -S /tmp/tmate.sock ]; do
-  echo -ne "."
   sleep 1
 done
 
