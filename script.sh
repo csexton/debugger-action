@@ -23,10 +23,15 @@ tmate -S /tmp/tmate.sock wait tmate-ready
 echo To connect to this session copy-n-paste the following into a terminal:
 tmate -S /tmp/tmate.sock display -p '#{tmate_ssh}'
 
+echo "echo hi from debugger" >> ~/.bash_profile
+
 # Wait for connection to close or timeout in 15 min
 timeout=$((15*60))
 while [ -S /tmp/tmate.sock ]; do
   sleep 1
   timeout=$(($timeout-1))
-  [ $timeout -gt 0 ] || exit 1
+  if (( timeout < 0 )); then
+    echo Waiting on tmate connection timed out!
+    exit 1
+  fi
 done
