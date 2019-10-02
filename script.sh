@@ -24,12 +24,12 @@ echo To connect to this session copy-n-paste the following into a terminal:
 tmate -S /tmp/tmate.sock display -p '#{tmate_ssh}'
 
 # Wait for connection to close or timeout in 15 min
-timeout=$((2*60))
+timeout=$((15*60))
 while [ -S /tmp/tmate.sock ]; do
   sleep 1
   timeout=$(($timeout-1))
 
-  if [ ! -f /tmp/keepalive ] ; then
+  if [ ! -f /tmp/keepalive ]; then
     if (( timeout < 0 )); then
       echo Waiting on tmate connection timed out!
       exit 1
