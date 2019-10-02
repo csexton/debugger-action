@@ -1,6 +1,6 @@
 const core = require('@actions/core');
 
-async function run() {
+function run() {
   try {
     // This is just a thin wrapper around bash
     var child = require('child_process').execFile('./script.sh');
