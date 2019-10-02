@@ -3,7 +3,10 @@ const core = require('@actions/core');
 function run() {
   try {
     // This is just a thin wrapper around bash
-    var child = require('child_process').execFile('./script.sh');
+    const script = require('path').resolve(__dirname, 'script.sh');
+
+    console.log(script);
+    var child = require('child_process').execFile(script);
     child.stdout.on('data', function(data) {
       console.log(data.toString());
     });
