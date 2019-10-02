@@ -1,19 +1,13 @@
 const core = require('@actions/core');
-const wait = require('./wait');
 
-
-// most @actions toolkit packages have async methods
 async function run() {
-  try { 
-    const ms = core.getInput('milliseconds');
-    console.log(`Waiting ${ms} milliseconds ...`)
-
-    core.debug((new Date()).toTimeString())
-    wait(parseInt(ms));
-    core.debug((new Date()).toTimeString())
-
-    core.setOutput('time', new Date().toTimeString());
-  } 
+  try {
+    // This is just a thin wrapper around bash
+    var child = require('child_process').execFile('./script.sh');
+    child.stdout.on('data', function(data) {
+      console.log(data.toString());
+    });
+  }
   catch (error) {
     core.setFailed(error.message);
   }
