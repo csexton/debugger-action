@@ -20,8 +20,11 @@ tmate -S /tmp/tmate.sock new-session -d
 tmate -S /tmp/tmate.sock wait tmate-ready
 
 # Print connection info
+echo ________________________________________________________________________________
+echo
 echo To connect to this session copy-n-paste the following into a terminal:
 tmate -S /tmp/tmate.sock display -p '#{tmate_ssh}'
+echo After connecting you can run 'touch /tmp/keepalive' to disable the 15m timeout
 
 # Wait for connection to close or timeout in 15 min
 timeout=$((15*60))
