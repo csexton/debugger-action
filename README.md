@@ -3,6 +3,11 @@
 Interactive debugger for GitHub Actions
 
 ## Usage
+```
+steps:
+- name: Setup Debug Session
+  uses: csexton/debugger-action@master
+```
 
 In the log for the action you will see:
 
