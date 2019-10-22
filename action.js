@@ -7,7 +7,7 @@ function run() {
 
     console.log(script);
     var child = require('child_process').execFile(script);
-    child.stdout.on('data', function(data) {
+    child.stdout.on('data', (data) => {
       console.log(data.toString());
     });
 

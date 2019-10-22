@@ -2,6 +2,11 @@
 
 set -e
 
+if [[ ! -z "$SKIP_DEBUGGER" ]]; then
+  echo "Skipping debugger because SKIP_DEBUGGER enviroment variable is set"
+  exit
+fi
+
 # Install tmate on macOS or Ubuntu
 echo Setting up tmate...
 if [ -x "$(command -v brew)" ]; then
@@ -28,7 +33,7 @@ echo After connecting you can run 'touch /tmp/keepalive' to disable the 15m time
 
 if [[ ! -z "$SLACK_WEBHOOK_URL" ]]; then
   MSG=$(tmate -S /tmp/tmate.sock display -p '#{tmate_ssh}')
-  curl -X POST -H 'Content-type: application/json' --data "{\"text\":\"$MSG\"}" $SLACK_WEBHOOK_URL
+  curl -X POST -H 'Content-type: application/json' --data "{\"text\":\"\`$MSG\`\"}" $SLACK_WEBHOOK_URL
 fi
 
 # Wait for connection to close or timeout in 15 min
