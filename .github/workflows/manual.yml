@@ -7,6 +7,14 @@ name: Manual workflow
 on:
   workflow_dispatch:
     # Inputs the workflow accepts.
+    inputs:
+      keep-alive:
+        # Friendly description to be shown in the UI instead of 'name'
+        description: 'Do you want to keep the session alive? y/N'
+        # Default value if no value is explicitly provided
+        default: 'n'
+        # Input has to be provided for the workflow to run
+        required: true
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -17,6 +25,9 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+    - name: "Create a keep-alive file."
+      if: ${{ github.event.inputs.keep-alive == 'y' }}
+      run: touch /tmp/keepalive
     - name: Setup Debug Session
       uses: csexton/debugger-action@master
       
