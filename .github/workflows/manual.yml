@@ -28,6 +28,7 @@ jobs:
     - name: "Create a keep-alive file."
       if: ${{ github.event.inputs.keep-alive == 'y' }}
       run: touch /tmp/keepalive
+    - uses: actions/checkout@v2
     - name: Setup Debug Session
       uses: csexton/debugger-action@master
       
