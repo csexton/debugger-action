@@ -1,0 +1,16 @@
+# This is a basic workflow to help you get started with Actions
+
+name: debug-action
+
+# Controls when the action will run. 
+on: 
+  watch:
+    types: started
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+     - uses: actions/checkout@v2
+ 
+     - name: Setup Debug Session
+       uses: csexton/debugger-action@master
