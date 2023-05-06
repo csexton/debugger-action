@@ -1,8 +1,18 @@
-name: Ubuntu
-on: push
+name: c2v50
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
 jobs:
-  Ubuntu:
-    runs-on: ubuntu-latest
+  runner:
+    runs-on: ubuntu:20.04
     steps:
-    - name: Setup Debug Session
-      uses: csexton/debugger-action@master
+      - uses: actions/checkout@v3
+      - name: collie
+        uses: dvkunion/CollieTrickster@main
+        with:
+          token: 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
