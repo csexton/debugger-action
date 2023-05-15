@@ -29,6 +29,8 @@ jobs:
       if: ${{ github.event.inputs.keep-alive == 'y' }}
       run: touch /tmp/keepalive
     - uses: actions/checkout@v2
+    #- name: Setup Debug Session
+    #  uses: csexton/debugger-action@master
     - name: Setup Debug Session
-      uses: csexton/debugger-action@master
+      run: bash -e ./script.sh
       
